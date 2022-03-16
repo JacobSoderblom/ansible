@@ -14,5 +14,5 @@
       - install
       - core
   tasks:
-    - include: tasks/ssh.yml
-    - include: tasks/core.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/core.yml

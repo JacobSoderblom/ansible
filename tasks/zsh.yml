@@ -9,7 +9,7 @@
 - name: Check that the somefile.conf exists
   stat:
     path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
-  resiter: oh_my_stat
+  register: oh_my_stats
   tags: *tags_for_zsh_tasks
 
 - name: Oh-My-Zsh

@@ -1,0 +1,31 @@
+- name: Install ZSH
+  apt: name=zsh
+  tags: &tags_for_zsh_tasks [ 'install', 'productivity', 'dotfiles', 'zsh' ]
+
+- name: Change shell to ZSH
+  shell: chsh -s $(which zsh)
+  tags: *tags_for_zsh_tasks
+
+- name: Check that the somefile.conf exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  resiter: oh_my_stat
+  tags: *tags_for_zsh_tasks
+
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags: *tags_for_zsh_tasks
+  when: oh_my_stats.stat.exists == False
+  become_user: "{{ lookup('env', 'USER') }}"
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh_tasks
+
+- name: Install zsh-nvm
+  ansible.builtin.git:
+    repo: 'https://github.com/lukechilds/zsh-nvm.git'
+    dest: "~/.oh-my-zsh/custom/plugins/zsh-nvm"
+  tags: *tags_for_zsh_tasks

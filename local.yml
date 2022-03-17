@@ -1,7 +1,8 @@
 - hosts: localhost
   vars:
-    source_key: "./.ssh/id_ed25519"
-    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    ssh_key: "id_ed25519"
+    source_key: "./.ssh/{{ ssh_key }}"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/{{ ssh_key }}"
     personal: "{{ lookup('env', 'HOME') }}/personal"
   pre_tasks:
   - name: Update apt
@@ -15,4 +16,9 @@
       - core
   tasks:
     - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/git.yml
     - import_tasks: tasks/core.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/nvim.yml
+    - import_tasks: tasks/productivity-tools.yml
+    - import_tasks: tasks/dotfiles.yml

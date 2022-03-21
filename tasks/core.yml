@@ -33,6 +33,14 @@
     - neovim
     - core
 
+- name: Add ubuntu repository
+  apt_repository: repo="deb http://archive.ubuntu.com/ubuntu focal universe" state=present
+  become: yes
+
+- name: Install FiraCode
+  become: true
+  apt: apt: name="fonts-firacode" update_cache=yes state=latest
+
 - name: dconf i3
   shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
   tags:

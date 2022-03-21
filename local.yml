@@ -22,3 +22,6 @@
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/productivity-tools.yml
     - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/firefox.yml
+    - import_tasks: tasks/chrome.yml
+    - import_tasks: tasks/polypane.yml

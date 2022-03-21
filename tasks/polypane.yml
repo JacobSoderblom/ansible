@@ -1,0 +1,46 @@
+
+- name: Request latest release of Polypane
+  uri:  
+    url: https://api.github.com/repos/firstversionist/polypane/releases/latest
+    body_format: json
+  register: "polypane_releases"
+  tags:
+    - browsers
+    - polypane
+    - install
+
+- name: Set Polypane version
+  set_fact:
+    polypane_version: "{{ polypane_releases.json.tag_name
+          | regex_replace('^v?(.*)$', '\\1') }}"
+  tags:
+    - browsers
+    - polypane
+    - install
+
+- name: Download latest release of Polypane
+  get_url:
+    url: "https://github.com/firstversionist/polypane/releases/download/v{{ polypane_version }}/polypane_{{ polypane_version }}_amd64.deb"
+    dest: /tmp/polypane.deb
+    tmp_dest: /tmp/
+  tags:
+    - browsers
+    - polypane
+    - install
+
+- name: Install Polypane
+  become: true
+  shell: "dpkg -i /tmp/polypane.deb"
+  tags:
+    - browsers
+    - polypane
+    - install
+
+- name: Remove Polypane tmp file
+  become: true
+  shell: "rm -rf /tmp/polypane.deb"
+  tags:
+    - browsers
+    - polypane
+    - install
+

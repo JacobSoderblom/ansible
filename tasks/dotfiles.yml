@@ -24,3 +24,11 @@
     - install
     - dotfiles
     - stow
+
+- name: Install Neovim plugins
+  command: runuser -l "{{ lookup('env', 'USER') }}" -c 'nvim -c "PlugInstall" -c ":qa!"'
+  become: yes
+  tags:
+    - install
+    - dotfiles
+    - neovim-plugins

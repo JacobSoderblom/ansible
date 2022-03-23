@@ -29,3 +29,9 @@
     repo: 'https://github.com/lukechilds/zsh-nvm.git'
     dest: "~/.oh-my-zsh/custom/plugins/zsh-nvm"
   tags: *tags_for_zsh_tasks
+
+- name: Install p10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.github
+    depth: 1
+    dest: "~/.oh-my-zsh/custom/themes/powerlevel10k"

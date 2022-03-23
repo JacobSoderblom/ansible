@@ -37,10 +37,6 @@
   apt_repository: repo="deb http://archive.ubuntu.com/ubuntu focal universe" state=present
   become: yes
 
-- name: Install FiraCode
-  become: true
-  apt: name="fonts-firacode" update_cache=yes state=latest
-
 - name: Installing Homebrew
   shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   tags:

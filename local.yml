@@ -27,3 +27,4 @@
     - import_tasks: tasks/firefox.yml
     - import_tasks: tasks/chrome.yml
     - import_tasks: tasks/polypane.yml
+    - import_tasks: tasks/social.yml

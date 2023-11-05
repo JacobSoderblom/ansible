@@ -1,0 +1,4 @@
+- name: "[darwin] Install kitty"
+  community.general.homebrew:
+    name: kitty
+  tags: kitty

@@ -1,0 +1,10 @@
+- name: "[debian] Install common packages"
+  become: true
+  ansible.builtin.package:
+    name:
+      - git
+      - zsh
+      - ripgrep
+      - fzf
+      - fontconfig
+  tags: common

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Enable strict mode for Bash
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
+# Install Homebrew
+if ! command -v brew &>/dev/null; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Install ansible-pull
+if ! command -v ansible-pull &>/dev/null; then
+	brew install ansible
+fi
+
+# Install Ansible dependencies
+requirements_file="/tmp/requirements.yml"
+curl -fsSL -o "${requirements_file}" "https://raw.githubusercontent.com/jdno/workstation/HEAD/requirements.yml"
+ansible-galaxy install -r "${requirements_file}"
+rm "${requirements_file}"
+
+# Run playbook
+ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/jdno/workstation.git

@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.yml": "ansible",
+    "**/.config/ansible-lint.yml": "yaml",
+    ".yamllint.yml": "yaml",
+    "requirements.yml": "yaml",
+    "**/.github/workflows/*.yml": "yaml",
+    "**/.github/*.yml": "yaml",
+  }
+}

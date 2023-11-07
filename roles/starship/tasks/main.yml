@@ -1,0 +1,25 @@
+- name: "[main] Download Starship install script"
+  ansible.builtin.uri:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship-install.sh
+    mode: "u=rwx,g=rx,o=rx"
+    validate_certs: false
+  tags: starship
+
+- name: "[main] Run Starship install script"
+  ansible.builtin.command: /tmp/starship-install.sh -y
+  changed_when: true
+  tags: starship
+
+- name: "[main] Remove Starship install script"
+  ansible.builtin.file:
+    path: /tmp/starship-install.sh
+    state: absent
+  tags: starship
+
+- name: "[main] Copy Starship config"
+  ansible.builtin.file:
+    src: starship.toml
+    dest: "{{ starship_config_dir }}"
+    state: link
+  tags: starship

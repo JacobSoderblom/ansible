@@ -1,5 +1,5 @@
 - name: "[darwin] Git Submodule Update"
-  git:
+  ansible.builtin.git:
     repo: git@github.com:jonasdiemer/EurKEY-Mac.git
     dest: ../files/macos
     recursive: yes
@@ -8,10 +8,10 @@
   tags: eurkey
 
 - name: "[darwin] Copy EurKEY files to /Library/Keyboard Layouts"
-  copy:
-    src: '{{item}}'
+  ansible.builtin.file:
+    src: "{{ item }}"
     dest: /Library/Keyboard Layouts
-    link: true
+    state: link
   loop:
     - ../files/macos/EurKEY.keylayout
     - ../files/macos/EurKEY.icns

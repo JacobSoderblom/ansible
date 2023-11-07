@@ -19,7 +19,7 @@
     path: "{{ nerdfont_install_dir }}/{{ item.1.fontname }}"
     state: directory
     mode: 0755
-  loop: "{{ nerdfont_users|product(nerdfont_fonts)|list }}"
+  loop: "{{ nerdfont_users | product(nerdfont_fonts) | list }}"
   become: true
   become_user: "{{ item.0 }}"
   when:
@@ -50,7 +50,7 @@
   become_user: "{{ item.0 }}"
   register: nerdfont_download
   until: nerdfont_download is succeeded
-  loop: "{{ nerdfont_users|product(nerdfont_fonts)|list }}"
+  loop: "{{ nerdfont_users | product(nerdfont_fonts) | list }}"
   when:
     - nerdfont_env is defined
     - "'user' in nerdfont_env"

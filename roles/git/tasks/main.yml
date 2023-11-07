@@ -4,10 +4,10 @@
   tags: git
 
 - name: "[main] Create global excludes file."
-  ansible.builtin.copy:
+  ansible.builtin.file:
     src: gitignore_global
     dest: "{{ git_excludes_file }}"
-    mode: 0644
+    state: link
 
 - name: "[main] Copy Git configuration."
   ansible.builtin.template:

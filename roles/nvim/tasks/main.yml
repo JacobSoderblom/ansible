@@ -1,3 +1,12 @@
 - name: "[main] Include tasks for {{ ansible_os_family }}"
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: nvim
+
+- name: "[main] Clone kickstarter config"
+  ansible.builtin.git:
+    repo: git@github.com:JacobSoderblom/kickstart.nvim.git
+    dest: "{{ ansible_env.HOME }}/.config/nvim"
+
+- name: "[main] Install nvim plugins"
+  ansible.builtin.command: nvim --headless "+Lazy! sync" +qa
+  changed_when: false

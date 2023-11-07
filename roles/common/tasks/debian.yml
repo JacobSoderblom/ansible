@@ -1,6 +1,0 @@
-- name: "[debian] Install common packages"
-  become: true
-  ansible.builtin.package:
-    name:
-      - zsh
-  tags: common

@@ -4,6 +4,6 @@
     dest: /Library/Keyboard Layouts
     state: link
   loop:
-    - macos/EurKEY.keylayout
-    - macos/EurKEY.icns
+    - EurKEY-Mac/EurKEY.keylayout
+    - EurKEY-Mac/EurKEY.icns
   tags: eurkey

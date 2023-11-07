@@ -1,6 +1,9 @@
 - name: "[debian] Install Neovim"
   become: true
   ansible.builtin.package:
-    name: neovim
+    name:
+      - neovim
+      - ripgrep
+      - fzf
     state: present
   tags: nvim

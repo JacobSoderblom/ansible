@@ -3,7 +3,5 @@
   ansible.builtin.package:
     name:
       - zsh
-      - ripgrep
-      - fzf
       - fontconfig
   tags: common

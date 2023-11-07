@@ -8,7 +8,5 @@
   community.general.homebrew:
     name:
       - zsh
-      - ripgrep
-      - fzf
       - fontconfig
   tags: common

@@ -1,4 +1,7 @@
 - name: "[darwin] Install Neovim"
   community.general.homebrew:
-    name: neovim
+    name:
+      - neovim
+      - ripgrep
+      - fzf
   tags: nvim

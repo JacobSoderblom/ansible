@@ -1,0 +1,16 @@
+[user]
+        name = {{ git_username }}
+        email = {{ git_email }}
+[core]
+        editor = nvim
+        excludesfile = {{ ansible_env['HOME'] }}/.gitignore_global
+[commit]
+
+[init]
+        defaultBranch = main
+[pull]
+        rebase = True
+[push]
+        autoSetupRemote = true
+        default = current
+        followTags = True

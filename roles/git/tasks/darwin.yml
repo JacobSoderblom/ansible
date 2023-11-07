@@ -1,0 +1,5 @@
+---
+- name: "[darwin] Install git"
+  community.general.homebrew:
+    name: git
+  tags: git

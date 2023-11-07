@@ -1,0 +1,17 @@
+---
+- name: "[main] Include tasks for {{ ansible_os_family }}"
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+  tags: git
+
+- name: "[main] Create global excludes file."
+  ansible.builtin.copy:
+    src: gitignore_global
+    dest: "{{ git_excludes_file }}"
+    mode: 0644
+
+- name: "[main] Copy Git configuration."
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: "{{ ansible_env['HOME'] }}/.gitconfig"
+    mode: 0644
+  tags: git

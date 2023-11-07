@@ -1,0 +1,6 @@
+---
+- name: "[debian] Install git"
+  become: true
+  ansible.builtin.package:
+    name: git
+  tags: git

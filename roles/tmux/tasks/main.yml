@@ -2,3 +2,13 @@
 - name: "[main] Include tasks for {{ ansible_os_family }}"
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: tmux
+
+- name: "[main] Copy tmux config"
+  ansible.builtin.file:
+  src: tmux
+  dest: "{{ ansible_env.HOME }}/.tmux.conf"
+  state: link
+
+- name: "[main] Source tmux config"
+  ansible.builtin.command: "source {{ ansible_env.HOME }}/.tmux.conf"
+  changed_when: false

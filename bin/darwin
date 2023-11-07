@@ -5,11 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Install community.general.homebrew
-if ! command -v brew &>/dev/null; then
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/community.general.homebrew/install/HEAD/install.sh)"
-fi
-
 # Install ansible-pull
 if ! command -v ansible-pull &>/dev/null; then
 	brew install ansible

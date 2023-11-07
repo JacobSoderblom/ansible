@@ -12,9 +12,9 @@ fi
 
 # Install Ansible dependencies
 requirements_file="/tmp/requirements.yml"
-curl -fsSL -o "${requirements_file}" "https://raw.githubusercontent.com/JacobSoderblom/workstation/HEAD/requirements.yml"
+curl -fsSL -o "${requirements_file}" "https://raw.githubusercontent.com/JacobSoderblom/ansible/HEAD/requirements.yml"
 ansible-galaxy install -r "${requirements_file}"
 rm "${requirements_file}"
 
 # Run playbook
-ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/JacobSoderblom/workstation.git
+ANSIBLE_FORCE_COLOR=1 ansible-pull -K -U https://github.com/JacobSoderblom/ansible.git

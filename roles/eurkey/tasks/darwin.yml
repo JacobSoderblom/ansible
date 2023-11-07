@@ -1,13 +1,13 @@
 - name: "[darwin] Copy EurKEY Layout to /Library/Keyboard Layouts"
   ansible.builtin.file:
-    src: EurKEY-Mac/EurKEY.keylayout
+    src: EurKEY.keylayout
     dest: /Library/Keyboard Layouts/EurKEY.keylayout
     state: link
   tags: eurkey
 
 - name: "[darwin] Copy EurKEY Icons to /Library/Keyboard Layouts"
   ansible.builtin.file:
-    src: EurKEY-Mac/EurKEY.icns
+    src: EurKEY.icns
     dest: /Library/Keyboard Layouts/EurKEY.icns
     state: link
   tags: eurkey

@@ -3,5 +3,4 @@
   ansible.builtin.package:
     name:
       - zsh
-      - fontconfig
   tags: common

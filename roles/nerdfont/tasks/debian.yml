@@ -2,6 +2,14 @@
   ansible.builtin.include_vars: defaults/debian.yml
   tags: nerdfonts
 
+- name: "[debian] Install NerdFonts dependencies"
+  ansible.builtin.apt:
+    name:
+      - fontconfig
+      - unzip
+    state: present
+  tags: nerdfonts
+
 - name: "[debian] Create NerdFonts folder for system-wode installation"
   ansible.builtin.file:
     path: "{{ nerdfont_install_dir }}/{{ item.fontname }}"

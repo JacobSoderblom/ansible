@@ -8,5 +8,4 @@
   community.general.homebrew:
     name:
       - zsh
-      - fontconfig
   tags: common

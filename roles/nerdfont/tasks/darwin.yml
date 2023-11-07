@@ -1,3 +1,12 @@
+---
+- name: "[darwin] Install Nerd font dependencies"
+  community.general.homebrew:
+    name:
+      - fontconfig
+      - unzip
+    state: present
+  tags: nerdfonts
+
 - name: "[darwin] Install Nerd Fonts with community.general.homebrew cask"
   community.general.homebrew_cask:
     name: "{{ item[0].name }}"

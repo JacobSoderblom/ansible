@@ -22,3 +22,8 @@
     dest: "{{ ansible_env.HOME }}/.zsh_profile"
     state: link
   tags: zsh
+
+- name: "[main] Source zshrc"
+  ansible.builtin.command: source "{{ ansible_env.HOME }}/.zshrc"
+  changed_when: false
+  tags: zsh

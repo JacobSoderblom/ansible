@@ -1,3 +1,10 @@
 - name: "[main] Include tasks for {{ ansible_os_family }}"
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: kitty
+
+- name: "[main] Copy kitty.conf"
+  ansible.builtin.file:
+    src: kitty.conf
+    dest: "{{ ansible_env.HOME }}/.config/kitty/kitty.conf"
+    state: link
+  tags: kitty

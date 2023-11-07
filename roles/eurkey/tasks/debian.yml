@@ -1,0 +1,21 @@
+- name: "[debian] Install Eurkey repository"
+  become: true
+  ansible.builtin.shell: |
+    set -o pipefail
+    wget -nv -O - https://eurkey.steffen.bruentjen.eu/download/debian/repo/conf/eurkey.gpg.key | apt-key add -
+    echo deb https://eurkey.steffen.bruentjen.eu/download/debian/repo stable main | sh -c 'cat > /etc/apt/sources.list.d/eurkey.steffen.bruentjen.de.sources.list'
+  changed_when: true
+  tags: eurkey
+
+- name: "[debian] Update and upgrade apt packages"
+  become: true
+  ansible.buildin.package:
+    upgrade: yes
+    update_cache: yes
+  tags: eurkey
+
+- name: "[debian] Install Eurkey"
+  become: true
+  ansible.builtin.package:
+    name: eurkey
+  tags: eurkey

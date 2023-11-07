@@ -1,0 +1,66 @@
+- name: "[debian] Include Debian-specific variables"
+  ansible.builtin.include_vars: defaults/debian.yml
+  tags: nerdfonts
+
+- name: "[debian] Create NerdFonts folder for system-wode installation"
+  ansible.builtin.file:
+    path: "{{ nerdfont_install_dir }}/{{ item.fontname }}"
+    state: directory
+    mode: 0755
+  become: true
+  loop: "{{ nerdfont_fonts }}"
+  when:
+    - nerdfont_env is defined
+    - "'system' in nerdfont_env"
+  tags: nerdfonts
+
+- name: "[debian] Create NerdFonts folder for each user"
+  ansible.builtin.file:
+    path: "{{ nerdfont_install_dir }}/{{ item.1.fontname }}"
+    state: directory
+    mode: 0755
+  loop: "{{ nerdfont_users|product(nerdfont_fonts)|list }}"
+  become: true
+  become_user: "{{ item.0 }}"
+  when:
+    - nerdfont_env is defined
+    - "'user' in nerdfont_env"
+  tags: nerdfonts
+
+- name: "[debian] Download specified Nerd Fonts for system-wide installation"
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerdfont_release }}/{{ item.fontname }}.zip"
+    dest: "{{ nerdfont_install_dir }}/{{ item.fontname }}"
+    remote_src: true
+  loop: "{{ nerdfont_fonts }}"
+  register: nerdfont_download
+  until: nerdfont_download is succeeded
+  become: true
+  when:
+    - nerdfont_env is defined
+    - "'system' in nerdfont_env"
+  tags: nerdfonts
+
+- name: "[debian] Download specified Nerd Fonts for user-specific installation"
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerdfont_release }}/{{ item.1.fontname }}.zip"
+    dest: "{{ nerdfont_install_dir }}/{{ item.1.fontname }}"
+    remote_src: true
+  become: true
+  become_user: "{{ item.0 }}"
+  register: nerdfont_download
+  until: nerdfont_download is succeeded
+  loop: "{{ nerdfont_users|product(nerdfont_fonts)|list }}"
+  when:
+    - nerdfont_env is defined
+    - "'user' in nerdfont_env"
+  tags: nerdfonts
+
+- name: "[debian] Install specified NerdFonts"
+  ansible.builtin.command: "fc-cache -f {{ nerdfont_install_dir }}"
+  # commented because of the issue whith var registered withi loop,
+  # registering "changed: false" while the actual change happened (reported yellow)
+  # when: nerdfont_copy.changed
+  changed_when: nerdfont_download.changed
+  become: true
+  tags: nerdfonts

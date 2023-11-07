@@ -1,0 +1,15 @@
+- name: "[darwin] Install Nerd Fonts with community.general.homebrew cask"
+  community.general.homebrew_cask:
+    name: "{{ item[0].name }}"
+    state: present
+  become: true
+  become_user: "{{ item[1] }}"
+  with_nested:
+    - "{{ nerdfont_fonts }}"
+    - "{{ nerdfont_users }}"
+  when: item[1] != 'root'
+  register: result
+  failed_when:
+    - result.failed
+    - "not 'Error: It seems there is already ' in result.msg"
+  tags: nerdfonts

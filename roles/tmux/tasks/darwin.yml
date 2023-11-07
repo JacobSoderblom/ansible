@@ -1,0 +1,4 @@
+- name: "[darwin] Install tmux"
+  community.general.homebrew:
+    name: tmux
+  tags: tmux

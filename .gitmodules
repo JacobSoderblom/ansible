@@ -1,0 +1,3 @@
+[submodule "roles/eurkey/files/macos"]
+	path = roles/eurkey/files/macos
+	url = git@github.com:jonasdiemer/EurKEY-Mac.git

@@ -1,6 +1,0 @@
-- name: Install discord
-  shell: /home/linuxbrew/.linuxbrew/bin/brew discord
-  tags:
-    - install
-    - social
-    - discord

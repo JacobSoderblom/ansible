@@ -1,0 +1,6 @@
+- name: "[debian] Install tmux"
+  become: true
+  ansible.builtin.package:
+    name: tmux
+    state: present
+  tags: tmux

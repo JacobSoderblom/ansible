@@ -1,0 +1,10 @@
+# Releases and available fonts (Assets) are here:
+#   https://github.com/ryanoasis/nerd-fonts/releases
+nerdfont_release: v2.3.1
+
+nerdfont_env: "system" # 'system' | 'user' | users'
+
+nerdfont_sys_dir: "/usr/local/share/fonts"
+nerdfont_usr_dir: "~/.local/share/fonts"
+nerdfont_install_dir: >
+  {{ nerdfont_sys_dir if 'system' in nerdfont_env else nerdfont_usr_dir }}/NerdFonts

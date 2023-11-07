@@ -1,0 +1,6 @@
+- name: "[debian] Install kitty"
+  become: true
+  ansible.builtin.package:
+    name: kitty
+    state: present
+  tags: kitty

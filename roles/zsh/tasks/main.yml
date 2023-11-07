@@ -1,0 +1,24 @@
+---
+- name: "[main] Include tasks for {{ ansible_os_family }}"
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+  tags: zsh
+
+- name: "[main] Install oh-my-zsh"
+  ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  tags: zsh
+
+- name: "[main] Copy zshrc"
+  ansible.builtin.file:
+    src: zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    state: link
+  tags: zsh
+
+- name: "[main] Copy zsh_profile"
+  ansible.builtin.file:
+    src: zsh_profile
+    dest: "{{ ansible_env.HOME }}/.zsh_profile"
+    state: link
+  tags: zsh

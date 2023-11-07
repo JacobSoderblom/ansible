@@ -1,10 +1,7 @@
 ---
 - name: "[debian] Install zsh"
   ansible.builtin.package:
-    name:
-      - zsh
-      - zsh-syntax-highlighting
-      - zsh-completions
+    name: zsh
     state: present
   tags: zsh
 

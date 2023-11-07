@@ -1,14 +1,5 @@
 ---
-- name: "[darwin] Install zsh"
-  community.general.homebrew:
-    name:
-      - zsh
-      - zsh-syntax-highlighting
-      - zsh-completions
-    state: present
-  tags: zsh
-
 - name: "[darwin] Set zsh as default shell"
-  ansible.builtin.command: chsh -s /opt/homebrew/bin/zsh
+  ansible.builtin.command: chsh -s $(which zsh)
   changed_when: false
   tags: zsh

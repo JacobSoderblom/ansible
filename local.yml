@@ -1,7 +1,6 @@
 ---
 - name: Play for local workstation
-  hosts: all
-  connection: local
+  hosts: localhost
 
   roles:
     - { role: eurkey, tags: ["terminal"] }

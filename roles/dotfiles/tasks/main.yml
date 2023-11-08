@@ -1,0 +1,15 @@
+---
+- name: "Clone dotfiles"
+  ansible.builtin.git:
+    repo: git@github.com:JacobSoderblom/.dotfiles.git
+    dest: "{{ dotfiles_path }}"
+    recursive: true
+    update: true
+  tags: dotfiles
+
+- name: "Ensure .dotfiles is up to date cronjob"
+  ansible.builtin.cron:
+    name: "Update .dotfiles"
+    minute: "*/10"
+    job: "cd {{ dotfiles_path }} && git pull"
+  tags: dotfiles

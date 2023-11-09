@@ -17,9 +17,7 @@
     state: absent
   tags: starship
 
-- name: "Copy Starship config"
-  ansible.builtin.file:
-    src: starship.toml
-    dest: "{{ starship_config_dir }}"
-    state: link
+- name: "Stow Starship"
+  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow starship"
+  changed_when: false
   tags: starship

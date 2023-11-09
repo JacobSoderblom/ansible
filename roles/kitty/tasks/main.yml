@@ -2,9 +2,7 @@
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: kitty
 
-- name: "[main] Copy kitty.conf"
-  ansible.builtin.file:
-    src: kitty.conf
-    dest: "{{ ansible_env.HOME }}/.config/kitty/kitty.conf"
-    state: link
+- name: "[main] Stow Kitty"
+  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow kitty"
+  changed_when: false
   tags: kitty

@@ -1,0 +1,5 @@
+---
+- name: "[darwin] Install Stow"
+  community.general.homebrew:
+    name: stow
+  tags: stow

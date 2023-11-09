@@ -4,3 +4,4 @@
 
   roles:
     - { role: eurkey, tags: ["terminal"] }
+    - { role: zsh, tags: ["terminal"] }

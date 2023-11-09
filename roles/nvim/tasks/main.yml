@@ -3,10 +3,9 @@
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: nvim
 
-- name: "[main] Clone kickstarter config"
-  ansible.builtin.git:
-    repo: git@github.com:JacobSoderblom/kickstart.nvim.git
-    dest: "{{ ansible_env.HOME }}/.config/nvim"
+- name: "[main] Stow Nvim"
+  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow nvim"
+  changed_when: false
   tags: nvim
 
 - name: "[main] Install nvim plugins"

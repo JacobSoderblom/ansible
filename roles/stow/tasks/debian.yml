@@ -1,0 +1,6 @@
+---
+- name: "[debian] Install Stow"
+  become: true
+  ansible.builtin.package:
+    name: stow
+  tags: stow

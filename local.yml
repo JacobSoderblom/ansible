@@ -3,15 +3,15 @@
   hosts: localhost
 
   roles:
-    #- { role: xcode, tags: ["terminal"] }
-   # - { role: homebrew, tags: ["terminal"] }
+    - { role: xcode, tags: ["terminal"] }
+    - { role: homebrew, tags: ["terminal"] }
     - { role: nerdfont, tags: ["fonts"] }
-    #- { role: stow, tags: ["terminal"] }
-    #- { role: eurkey, tags: ["keyboard"] }
-    #- { role: git, tags: ["terminal"] }
-    #- { role: dotfiles, tags: ["terminal"] }
-    #- { role: kitty, tags: ["terminal"] }
-    #- { role: tmux, tags: ["terminal"] }
-    #- { role: nvim, tags: ["terminal"] }
-    #- { role: starship, tags: ["terminal"] }
-    #- { role: zsh, tags: ["terminal"] }
+    - { role: stow, tags: ["terminal"] }
+    - { role: eurkey, tags: ["keyboard"] }
+    - { role: git, tags: ["terminal"] }
+    - { role: dotfiles, tags: ["terminal"] }
+    - { role: kitty, tags: ["terminal"] }
+    - { role: tmux, tags: ["terminal"] }
+    - { role: nvim, tags: ["terminal"] }
+    - { role: starship, tags: ["terminal"] }
+    - { role: zsh, tags: ["terminal"] }

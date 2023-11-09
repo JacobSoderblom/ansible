@@ -1,2 +1,4 @@
 ---
 git_excludes_file: "{{ ansible_env.HOME }}/.gitignore_global"
+git_private_ssh_config: "{{ ansible_env.HOME }}/.ssh/private"
+git_work_ssh_config: "{{ ansible_env.HOME }}/.ssh/work"

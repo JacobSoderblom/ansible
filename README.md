@@ -4,7 +4,7 @@ automated development environment setup
 
 ## Instructions
 
-Setup a new SSH Key and name it `private`, then register it at GitHub, [see instructions](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+Setup a new SSH Key and register it at GitHub, [see instructions](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 ### Bootstrap Darwin
 

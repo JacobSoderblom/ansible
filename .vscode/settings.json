@@ -6,5 +6,6 @@
     "requirements.yml": "yaml",
     "**/.github/workflows/*.yml": "yaml",
     "**/.github/*.yml": "yaml",
-  }
+  },
+  "ansible.python.interpreterPath": "/opt/homebrew/bin/python3"
 }

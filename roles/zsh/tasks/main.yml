@@ -1,33 +1,54 @@
 ---
-- name: "[main] Include tasks for {{ ansible_os_family }}"
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: "Install zsh"
+  ansible.builtin.package:
+    name: zsh
+    state: present
+  when: ansible_os_family == "Debian"
   tags: zsh
 
-- name: "[main] Install oh-my-zsh"
+- name: "Register current user (workaround to change default shell)"
+  ansible.builtin.command: whoami
+  changed_when: false
+  register: current_user
+  tags: zsh
+
+- name: "Register zsh path"
+  ansible.builtin.command: which zsh
+  changed_when: false
+  register: zsh_path
+  tags: zsh
+
+- name: "Change default shell to zsh"
+  become: true
+  ansible.builtin.command: "chsh -s {{ zsh_path.stdout }} {{ current_user.stdout }}"
+  changed_when: false
+  tags: zsh
+
+- name: "Install oh-my-zsh"
   ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   args:
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
   tags: zsh
 
-- name: "[main] Install zsh-syntax-highlighting"
+- name: "Install zsh-syntax-highlighting"
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
   tags: zsh
 
-- name: "[main] Install zsh-nvm"
+- name: "Install zsh-nvm"
   ansible.builtin.git:
     repo: https://github.com/lukechilds/zsh-nvm
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-nvm"
   tags: zsh
 
-- name: "[main] Install zsh-completions"
+- name: "Install zsh-completions"
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-completions
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-completions"
   tags: zsh
 
-- name: "[main] Stow zsh"
+- name: "Stow zsh"
   ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow zsh"
   changed_when: false
   tags: zsh

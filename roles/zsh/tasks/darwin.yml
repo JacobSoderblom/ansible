@@ -5,8 +5,14 @@
   register: current_user
   tags: zsh
 
+- name: "[darwin] Register zsh path"
+  ansible.builtin.command: which zsh
+  changed_when: false
+  register: zsh_path
+  tags: zsh
+
 - name: "[darwin] Change default shell to zsh"
   become: true
-  ansible.builtin.command: "chsh -s $(which zsh) {{ current_user.stdout }}"
+  ansible.builtin.command: "chsh -s {{ zsh_path.stdout }} {{ current_user.stdout }}"
   changed_when: false
   tags: zsh

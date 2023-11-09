@@ -4,7 +4,8 @@
 [core]
         editor = nvim
         excludesfile = {{ ansible_env['HOME'] }}/.gitignore_global
-[commit]
+[core]
+	sshCommand = ssh -F ~/.ssh/personal_config
 
 [init]
         defaultBranch = main

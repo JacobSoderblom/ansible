@@ -2,8 +2,3 @@
 - name: "[main] Include tasks for {{ ansible_os_family }}"
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: tmux
-
-- name: "[main] Stow tmux"
-  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow tmux"
-  changed_when: false
-  tags: tmux

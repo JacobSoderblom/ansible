@@ -2,20 +2,3 @@
 - name: "[main] Include tasks for {{ ansible_os_family }}"
   ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
   tags: nvim
-
-- name: "[main] Stow Nvim"
-  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow nvim"
-  changed_when: false
-  tags: nvim
-
-- name: "[main] Install nvim plugins"
-  ansible.builtin.command: nvim --headless "+Lazy! sync" +qa
-  changed_when: false
-  tags: nvim
-
-- name: "[main] Ensure kickstarter is up to date cronjob"
-  ansible.builtin.cron:
-    name: "Update kickstarter.nvim"
-    minute: "*/10"
-    job: "cd {{ ansible_env.HOME }}/.config/nvim && git pull"
-  tags: nvim

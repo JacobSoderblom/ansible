@@ -16,8 +16,3 @@
     path: /tmp/starship-install.sh
     state: absent
   tags: starship
-
-- name: "Stow Starship"
-  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow starship"
-  changed_when: false
-  tags: starship

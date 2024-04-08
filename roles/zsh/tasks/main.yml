@@ -47,8 +47,3 @@
     repo: https://github.com/zsh-users/zsh-completions
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-completions"
   tags: zsh
-
-- name: "Stow zsh"
-  ansible.builtin.command: "cd {{ ansible_env.HOME }}/.dotfiles && stow zsh"
-  changed_when: false
-  tags: zsh

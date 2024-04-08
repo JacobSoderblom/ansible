@@ -7,7 +7,6 @@
     - { role: homebrew, tags: ["terminal"] }
     - { role: nerdfont, tags: ["fonts"] }
     - { role: stow, tags: ["terminal"] }
-    - { role: eurkey, tags: ["keyboard"] }
     - { role: git, tags: ["terminal"] }
     - { role: dotfiles, tags: ["terminal"] }
     - { role: kitty, tags: ["terminal"] }

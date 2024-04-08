@@ -9,7 +9,6 @@
     - { role: stow, tags: ["terminal"] }
     - { role: git, tags: ["terminal"] }
     - { role: dotfiles, tags: ["terminal"] }
-    - { role: kitty, tags: ["terminal"] }
     - { role: tmux, tags: ["terminal"] }
     - { role: nvim, tags: ["terminal"] }
     - { role: starship, tags: ["terminal"] }
